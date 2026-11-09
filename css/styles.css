@@ -1,0 +1,187 @@
+/* ==========================================================================
+   Comunidad Limpia - Estilos Personalizados y Complementarios
+   Paleta: Verdes ecológicos, Blancos limpios y Azules agua/cielo
+   ========================================================================== */
+
+:root {
+  --color-green-primary: #15803d;
+  --color-green-light: #22c55e;
+  --color-green-bg: #f0fdf4;
+  --color-blue-primary: #0284c7;
+  --color-blue-light: #38bdf8;
+  --color-blue-bg: #f0f9ff;
+  --color-text-main: #1e293b;
+  --color-text-muted: #64748b;
+  --radius-card: 16px;
+  --shadow-soft: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+  --shadow-hover: 0 20px 30px -10px rgba(22, 163, 74, 0.15);
+}
+
+/* Tipografía y Base */
+html {
+  scroll-behavior: smooth;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+h1, h2, h3, h4, .font-heading {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Animaciones sutiles */
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 15px rgba(34, 197, 94, 0.3); }
+  50% { box-shadow: 0 0 25px rgba(34, 197, 94, 0.6); }
+}
+
+.animate-float {
+  animation: floatSlow 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2.5s infinite;
+}
+
+/* Glassmorphism sutil */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.glass-nav {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Tarjetas de reciclaje */
+.tacho-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.tacho-card:hover {
+  transform: translateY(-6px);
+}
+
+/* Efecto de borde degradado */
+.gradient-border {
+  position: relative;
+  background: white;
+  border-radius: var(--radius-card);
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: calc(var(--radius-card) + 2px);
+  background: linear-gradient(135deg, #22c55e, #0284c7);
+  z-index: -1;
+  opacity: 0.25;
+  transition: opacity 0.3s;
+}
+
+.gradient-border:hover::before {
+  opacity: 0.8;
+}
+
+/* Estilo para items del buscador de residuos */
+.waste-item {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.waste-item:hover {
+  transform: scale(1.02);
+}
+
+/* Badges personalizados para tachos */
+.badge-organico {
+  background-color: #fef3c7;
+  color: #92400e;
+  border-color: #f59e0b;
+}
+
+.badge-plastico {
+  background-color: #fef08a;
+  color: #854d0e;
+  border-color: #eab308;
+}
+
+.badge-papel {
+  background-color: #e0f2fe;
+  color: #0369a1;
+  border-color: #0284c7;
+}
+
+.badge-vidrio {
+  background-color: #dcfce7;
+  color: #166534;
+  border-color: #16a34a;
+}
+
+.badge-peligroso {
+  background-color: #fee2e2;
+  color: #991b1b;
+  border-color: #ef4444;
+}
+
+.badge-no-aprovechable {
+  background-color: #f1f5f9;
+  color: #334155;
+  border-color: #64748b;
+}
+
+/* Botón flotante para volver arriba */
+#btn-scroll-top {
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+#btn-scroll-top.hidden-btn {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+}
+
+#btn-scroll-top.visible-btn {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* Estilo para acordeón de consejos */
+.tip-item.active .tip-content {
+  max-height: 500px;
+  opacity: 1;
+  padding-top: 1rem;
+}
+
+.tip-content {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.35s ease;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #86efac;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #22c55e;
+}
+

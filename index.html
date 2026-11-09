@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comunidad Limpia | ¡Juntos por un barrio limpio, verde y sostenible!</title>
+  <meta name="description" content="Plataforma comunitaria para solucionar la acumulación de basura, aprender a reciclar, consultar horarios de recolección y reportar puntos críticos en nuestro vecindario.">
+  
+  <!-- Google Fonts: Poppins (Títulos) & Inter (Lectura) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Íconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            eco: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              200: '#bbf7d0',
+              300: '#86efac',
+              400: '#4ade80',
+              500: '#22c55e',
+              600: '#16a34a',
+              700: '#15803d',
+              800: '#166534',
+              900: '#14532d',
+            },
+            cielo: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              200: '#bae6fd',
+              300: '#7dd3fc',
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+              800: '#075985',
+              900: '#0c4a6e',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            heading: ['Poppins', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Estilos propios complementarios -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-eco-200 selection:text-eco-900">
+
+  <!-- =========================================================================
+       BARRA DE NAVEGACIÓN SUPERIOR
+       ========================================================================= -->
+  <header class="sticky top-0 z-50 glass-nav border-b border-emerald-100 shadow-sm transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Logo y Nombre del Proyecto -->
+        <a href="#inicio" class="flex items-center gap-3 group">
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-eco-600 to-cielo-500 flex items-center justify-center text-white shadow-md shadow-eco-500/20 group-hover:scale-105 transition duration-300">
+            <i class="fa-solid fa-leaf text-2xl"></i>
+          </div>
+          <div>
+            <span class="block font-heading font-extrabold text-xl sm:text-2xl text-slate-900 tracking-tight leading-none group-hover:text-eco-700 transition">
+              Comunidad<span class="text-eco-600">Limpia</span>
+            </span>
+            <span class="text-xs text-slate-500 font-medium">Por un vecindario verde y saludable</span>
+          </div>
+        </a>
+
+        <!-- Enlaces en Escritorio -->
+        <nav class="hidden lg:flex items-center gap-7 font-medium text-sm text-slate-700">
+          <a href="#inicio" class="hover:text-eco-600 transition flex items-center gap-1.5 py-1">
+            <i class="fa-solid fa-house text-xs text-eco-500"></i> Inicio
+          </a>
+          <a href="#horarios" class="hover:text-eco-600 transition flex items-center gap-1.5 py-1">
+            <i class="fa-solid fa-truck-pickup text-xs text-eco-500"></i> Horarios
+          </a>
+          <a href="#reciclaje" class="hover:text-eco-600 transition flex items-center gap-1.5 py-1">
+            <i class="fa-solid fa-recycle text-xs text-eco-500"></i> Aprende a Reciclar
+          </a>
+          <a href="#reportar" class="hover:text-eco-600 transition flex items-center gap-1.5 py-1">
+            <i class="fa-solid fa-triangle-exclamation text-xs text-eco-500"></i> Reportar
+          </a>
+          <a href="#consejos" class="hover:text-eco-600 transition flex items-center gap-1.5 py-1">
+            <i class="fa-solid fa-lightbulb text-xs text-eco-500"></i> Consejos
+          </a>
+          <a href="#contacto" class="hover:text-eco-600 transition flex items-center gap-1.5 py-1">
+            <i class="fa-solid fa-paper-plane text-xs text-eco-500"></i> Contacto
+          </a>
+        </nav>
+
+        <!-- Botón de Acción Rápida (Reportar Punto Crítico) -->
+        <div class="hidden sm:flex items-center gap-3">
+          <a href="#reportar" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-eco-600 to-cielo-600 text-white font-semibold text-sm shadow-md hover:shadow-lg hover:from-eco-700 hover:to-cielo-700 transition duration-300 transform hover:-translate-y-0.5">
+            <i class="fa-solid fa-bullhorn animate-pulse"></i>
+            <span>Reportar Basura</span>
+          </a>
+        </div>
+
+        <!-- Botón Menú Móvil -->
+        <div class="flex lg:hidden items-center">
+          <button id="mobile-menu-btn" type="button" class="p-2.5 rounded-xl text-slate-600 hover:text-eco-600 hover:bg-emerald-50 focus:outline-none" aria-label="Abrir menú de navegación">
+            <i class="fa-solid fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Menú Desplegable Móvil -->
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-100 bg-white/95 backdrop-blur-md px-4 pt-3 pb-6 space-y-2 shadow-xl animate-fade-in">
+      <a href="#inicio" class="mobile-nav-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-700 hover:bg-emerald-50 hover:text-eco-700 font-medium">
+        <i class="fa-solid fa-house text-eco-500 w-5"></i> Inicio
+      </a>
+      <a href="#horarios" class="mobile-nav-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-700 hover:bg-emerald-50 hover:text-eco-700 font-medium">
+        <i class="fa-solid fa-truck-pickup text-eco-500 w-5"></i> Horarios de Recojo
+      </a>
+      <a href="#reciclaje" class="mobile-nav-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-700 hover:bg-emerald-50 hover:text-eco-700 font-medium">
+        <i class="fa-solid fa-recycle text-eco-500 w-5"></i> Aprende a Reciclar
+      </a>
+      <a href="#reportar" class="mobile-nav-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-700 hover:bg-emerald-50 hover:text-eco-700 font-medium">
+        <i class="fa-solid fa-triangle-exclamation text-eco-500 w-5"></i> Reportar Contaminación
+      </a>
+      <a href="#consejos" class="mobile-nav-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-700 hover:bg-emerald-50 hover:text-eco-700 font-medium">
+        <i class="fa-solid fa-lightbulb text-eco-500 w-5"></i> Consejos Ambientales
+      </a>
+      <a href="#contacto" class="mobile-nav-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-700 hover:bg-emerald-50 hover:text-eco-700 font-medium">
+        <i class="fa-solid fa-paper-plane text-eco-500 w-5"></i> Contacto y Sugerencias
+      </a>
+      <div class="pt-2">
+        <a href="#reportar" class="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-eco-600 text-white font-semibold text-sm shadow">
+          <i class="fa-solid fa-bullhorn"></i> Reportar Basura en la Calle
+        </a>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- =========================================================================
+       SECCIÓN 1: PÁGINA DE INICIO (HERO SECTION)
+       ========================================================================= -->
+  <section id="inicio" class="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28 bg-gradient-to-b from-eco-50/70 via-white to-slate-50">
+    <!-- Formas decorativas de fondo -->
+    <div class="absolute -top-24 -left-24 w-96 h-96 bg-eco-200/40 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute top-1/2 -right-24 w-96 h-96 bg-cielo-200/40 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Textos principales de bienvenida e introducción -->
+        <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-eco-100 text-eco-800 text-xs sm:text-sm font-semibold border border-eco-200 shadow-sm">
+            <span class="flex h-2 w-2 rounded-full bg-eco-500 animate-ping"></span>
+            <i class="fa-solid fa-seedling text-eco-600"></i> Proyecto Vecinal de Concientización y Acción
+          </div>
+
+          <h1 class="font-heading font-extrabold text-4xl sm:text-5xl lg:text-6xl text-slate-900 tracking-tight leading-[1.15]">
+            ¡Juntos por una <br class="hidden sm:inline">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-eco-600 via-emerald-600 to-cielo-600">
+              comunidad limpia
+            </span> y saludable!
+          </h1>
+
+          <p class="text-slate-600 text-base sm:text-lg lg:text-xl leading-relaxed max-w-2xl mx-auto lg:mx-0">
+            La acumulación de basura en nuestras calles afecta la salud de nuestras familias, crea malos olores y daña el medio ambiente. Aprende a clasificar tus residuos, respeta los horarios del camión recolector y reporta puntos críticos con un solo clic.
+          </p>
+
+          <!-- Botones de Acción -->
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+            <a href="#reciclaje" class="px-6 py-3.5 rounded-xl bg-eco-600 text-white font-semibold text-base shadow-md hover:bg-eco-700 hover:shadow-lg transition duration-200 flex items-center gap-2 group">
+              <i class="fa-solid fa-recycle group-hover:rotate-180 transition duration-500"></i>
+              Aprende a Reciclar
+            </a>
+            <a href="#horarios" class="px-6 py-3.5 rounded-xl bg-white text-slate-700 border border-slate-200 font-semibold text-base shadow-sm hover:border-cielo-400 hover:text-cielo-700 hover:bg-cielo-50/50 transition duration-200 flex items-center gap-2">
+              <i class="fa-regular fa-calendar-check text-cielo-600"></i>
+              Ver Horarios de Recojo
+            </a>
+          </div>
+
+          <!-- Métricas de impacto comunitario -->
+          <div class="grid grid-cols-3 gap-4 pt-6 border-t border-slate-200/70 max-w-xl mx-auto lg:mx-0">
+            <div class="text-center lg:text-left">
+              <span class="block font-heading font-extrabold text-2xl sm:text-3xl text-eco-700">100%</span>
+              <span class="text-xs text-slate-500 font-medium">Compromiso Vecinal</span>
+            </div>
+            <div class="text-center lg:text-left">
+              <span class="block font-heading font-extrabold text-2xl sm:text-3xl text-cielo-600">4 Zonas</span>
+              <span class="text-xs text-slate-500 font-medium">Rutas Organizadas</span>
+            </div>
+            <div class="text-center lg:text-left">
+              <span class="block font-heading font-extrabold text-2xl sm:text-3xl text-amber-600">0 Basura</span>
+              <span class="text-xs text-slate-500 font-medium">Nuestra Meta Común</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Imagen e Ilustración Conceptual del Hero -->
+        <div class="lg:col-span-5 relative">
+          <div class="relative mx-auto max-w-md lg:max-w-none">
+            <!-- Marco decorativo -->
+            <div class="absolute -inset-2 bg-gradient-to-r from-eco-400 to-cielo-400 rounded-3xl blur-lg opacity-30 group-hover:opacity-100 transition duration-1000"></div>
+            
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-white">
+              <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80" alt="Comunidad unida plantando árboles y cuidando la naturaleza" class="w-full h-80 sm:h-96 object-cover hover:scale-105 transition duration-500">
+              
+              <div class="p-6 bg-white space-y-3">
+                <div class="flex items-center gap-2 text-xs font-bold text-eco-700 uppercase tracking-wider">
+                  <i class="fa-solid fa-hands-holding-circle text-sm"></i> Acción Ciudadana
+                </div>
+                <h3 class="font-heading font-bold text-lg text-slate-900">
+                  "El cambio empieza en la puerta de tu casa"
+                </h3>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  Separar los residuos antes de que salgan de nuestro hogar evita que los recicladores informales rompan bolsas y reduce hasta un 70% la basura que va al botadero.
+                </p>
+              </div>
+            </div>
+
+            <!-- Tarjeta flotante interactiva -->
+            <div class="absolute -bottom-6 -left-6 sm:-left-8 glass-panel p-4 rounded-2xl shadow-xl border border-white/80 max-w-xs animate-float">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-eco-100 text-eco-700 flex items-center justify-center text-lg">
+                  <i class="fa-solid fa-sparkles"></i>
+                </div>
+                <div>
+                  <p class="text-xs font-bold text-slate-800">¡Sé un Vecino Ejemplar!</p>
+                  <p class="text-[11px] text-slate-500">Barrer tu vereda inspira a toda la cuadra.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================================================================
+       SECCIÓN 2: HORARIOS DE RECOJO DE BASURA
+       ========================================================================= -->
+  <section id="horarios" class="py-20 bg-white border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Encabezado de Sección -->
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cielo-50 text-cielo-700 text-xs font-semibold border border-cielo-200 mb-3">
+          <i class="fa-solid fa-clock"></i> Puntualidad y Limpieza
+        </span>
+        <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">
+          Horarios de Recojo de Residuos
+        </h2>
+        <p class="mt-3 text-slate-600 text-base">
+          Conoce exactamente qué días y a qué horas pasa el camión recolector por tu sector. Sacar la basura a tiempo evita que animales callejeros rompan las bolsas y previene focos infecciosos.
+        </p>
+
+        <!-- Indicador dinámico de qué día es hoy -->
+        <div class="mt-4 inline-block">
+          <span id="today-day-indicator" class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-50 text-amber-800 border border-amber-200 text-xs sm:text-sm font-semibold shadow-xs">
+            <i class="fa-solid fa-calendar-day text-amber-500"></i> Cargando calendario de hoy...
+          </span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Panel Izquierdo: Selector de Zona e Información Dinámica -->
+        <div class="lg:col-span-7 bg-slate-50 p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm">
+          <div class="mb-6">
+            <label for="select-zona" class="block font-heading font-bold text-slate-800 text-sm mb-2">
+              <i class="fa-solid fa-map-location-dot text-cielo-600 mr-1.5"></i> Selecciona tu Zona o Barrio:
+            </label>
+            <div class="relative">
+              <select id="select-zona" class="w-full bg-white border border-slate-300 rounded-xl px-4 py-3.5 text-slate-800 font-medium focus:ring-2 focus:ring-eco-500 focus:border-eco-500 outline-none transition appearance-none shadow-sm cursor-pointer pr-10">
+                <option value="norte">Zona Norte: Los Pinos, Sauces y Los Álamos</option>
+                <option value="centro">Zona Centro: Plaza Principal, Av. Central y Mercado</option>
+                <option value="sur">Zona Sur: Villa Jardín, Las Flores y Urb. El Sol</option>
+                <option value="este">Zona Este: Parques Industriales y Caseríos</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-500">
+                <i class="fa-solid fa-chevron-down text-sm"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ficha de detalles del horario de la zona seleccionada -->
+          <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-5">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+              <div>
+                <span class="text-xs uppercase tracking-wider text-slate-400 font-bold">Sector activo</span>
+                <h3 id="zona-nombre" class="font-heading font-bold text-xl text-slate-900 mt-0.5">
+                  Zona Norte (Los Pinos, Sauces y Los Álamos)
+                </h3>
+              </div>
+              <div class="w-12 h-12 rounded-xl bg-cielo-50 text-cielo-600 flex items-center justify-center text-xl shrink-0">
+                <i class="fa-solid fa-truck-moving"></i>
+              </div>
+            </div>
+
+            <!-- Horario y Turno -->
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center text-sm shrink-0 mt-0.5">
+                <i class="fa-regular fa-clock"></i>
+              </div>
+              <div>
+                <span class="block text-xs font-bold text-slate-500 uppercase">Horario de paso del camión:</span>
+                <span id="zona-turno" class="text-base font-bold text-slate-800">Turno Mañana: 07:00 a.m. - 09:30 a.m.</span>
+              </div>
+            </div>
+
+            <!-- Días de Residuos Comunes / Orgánicos -->
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center text-sm shrink-0 mt-0.5">
+                <i class="fa-solid fa-trash-can"></i>
+              </div>
+              <div>
+                <span class="block text-xs font-bold text-slate-500 uppercase">Días de Residuos Orgánicos y Comunes:</span>
+                <span id="zona-organicos" class="text-sm font-semibold text-slate-800">Lunes, Miércoles y Viernes</span>
+              </div>
+            </div>
+
+            <!-- Días del Programa de Reciclaje -->
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-lg bg-eco-50 text-eco-600 flex items-center justify-center text-sm shrink-0 mt-0.5">
+                <i class="fa-solid fa-recycle"></i>
+              </div>
+              <div>
+                <span class="block text-xs font-bold text-slate-500 uppercase">Días de Recojo de Material Reciclable (Bolsa Verde/Azul):</span>
+                <span id="zona-reciclaje" class="text-sm font-semibold text-eco-700">Martes y Sábados (Tachos de colores)</span>
+              </div>
+            </div>
+
+            <!-- Días de No aprovechables -->
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-lg bg-slate-100 text-slate-600 flex items-center justify-center text-sm shrink-0 mt-0.5">
+                <i class="fa-solid fa-ban"></i>
+              </div>
+              <div>
+                <span class="block text-xs font-bold text-slate-500 uppercase">Días de Residuos No Aprovechables:</span>
+                <span id="zona-no-aprov" class="text-sm font-semibold text-slate-700">Jueves</span>
+              </div>
+            </div>
+
+            <!-- Identificación del vehículo recolector -->
+            <div class="flex items-start gap-3 pt-2 border-t border-slate-100">
+              <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center text-sm shrink-0 mt-0.5">
+                <i class="fa-solid fa-id-card"></i>
+              </div>
+              <div>
+                <span class="block text-xs font-bold text-slate-500 uppercase">Cuadrilla / Vehículo asignado:</span>
+                <span id="zona-camion" class="text-xs font-medium text-slate-700">Unidad Recolectora Móvil #03</span>
+              </div>
+            </div>
+
+            <!-- Recomendación específica -->
+            <div class="p-3.5 rounded-xl bg-cielo-50 border border-cielo-200/80 text-cielo-900 text-xs sm:text-sm flex items-center gap-2.5">
+              <i class="fa-solid fa-circle-info text-cielo-600 text-base shrink-0"></i>
+              <span id="zona-alerta">Saca tus bolsas cerradas a las 06:30 a.m.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel Derecho: Buenas Prácticas al sacar la basura -->
+        <div class="lg:col-span-5 space-y-5">
+          <div class="bg-gradient-to-br from-eco-700 to-emerald-900 text-white p-7 rounded-3xl shadow-lg relative overflow-hidden">
+            <div class="absolute -right-8 -bottom-8 w-40 h-40 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
+            
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 text-white text-xs font-bold mb-4">
+              <i class="fa-solid fa-star"></i> Protocolo Vecinal
+            </span>
+            <h3 class="font-heading font-bold text-2xl mb-4">
+              4 Reglas de Oro para el Día de Recojo
+            </h3>
+
+            <ul class="space-y-4 text-sm text-emerald-50">
+              <li class="flex items-start gap-3">
+                <span class="w-6 h-6 rounded-full bg-white text-eco-800 font-bold flex items-center justify-center text-xs shrink-0 mt-0.5">1</span>
+                <div>
+                  <strong class="text-white block font-semibold">Saca las bolsas 30 minutos antes:</strong>
+                  No las dejes en la vereda la noche anterior para evitar roturas causadas por perros o roedores.
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-6 h-6 rounded-full bg-white text-eco-800 font-bold flex items-center justify-center text-xs shrink-0 mt-0.5">2</span>
+                <div>
+                  <strong class="text-white block font-semibold">Usa doble nudo y bolsas resistentes:</strong>
+                  Evita goteos de líquidos pestilentes (lixiviados) en las esquinas y veredas.
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-6 h-6 rounded-full bg-white text-eco-800 font-bold flex items-center justify-center text-xs shrink-0 mt-0.5">3</span>
+                <div>
+                  <strong class="text-white block font-semibold">Protege al personal de limpieza:</strong>
+                  Si desechas vidrios rotos o latas filosas, envuélvelos en cartón o botellas plásticas rotuladas "PELIGRO VIDRIO".
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-6 h-6 rounded-full bg-white text-eco-800 font-bold flex items-center justify-center text-xs shrink-0 mt-0.5">4</span>
+                <div>
+                  <strong class="text-white block font-semibold">No acumules desmonte ni muebles viejos:</strong>
+                  El camión estándar no recoge escombros de construcción ni colchones; solicita recojo especial a la municipalidad.
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Tarjeta de alerta vecinal -->
+          <div class="bg-amber-50 border border-amber-200 p-5 rounded-2xl flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-2xl shrink-0">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-slate-800 text-sm">¿El camión no pasó por tu calle?</h4>
+              <p class="text-xs text-slate-600 mt-0.5">
+                Si hubo algún retraso por mantenimiento o emergencia en tu sector, puedes reportarlo de inmediato en nuestra sección de reportes.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================================================================
+       SECCIÓN 3: APRENDE A RECICLAR (GUÍA EDUCATIVA E INTERACTIVA)
+       ========================================================================= -->
+  <section id="reciclaje" class="py-20 bg-eco-50/40 border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Encabezado de la Guía de Reciclaje -->
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-eco-100 text-eco-800 text-xs font-semibold border border-eco-200 mb-3">
+          <i class="fa-solid fa-graduation-cap"></i> Guía Práctica de Separación
+        </span>
+        <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">
+          Aprende a Reciclar Fácilmente
+        </h2>
+        <p class="mt-3 text-slate-600 text-base">
+          Clasificar la basura no es complicado: solo necesitas conocer el código de colores y aplicar los tres pasos dorados: <strong class="text-slate-800">Limpiar, Secar y Compactar</strong>.
+        </p>
+      </div>
+
+      <!-- Los 3 Pasos Clave antes de Reciclar -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center relative overflow-hidden group hover:border-eco-400 transition">
+          <div class="w-14 h-14 mx-auto rounded-2xl bg-eco-100 text-eco-700 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition duration-300">
+            <i class="fa-solid fa-hand-holding-droplet"></i>
+          </div>
+          <span class="text-xs font-bold uppercase tracking-wider text-eco-600">Paso 1</span>
+          <h3 class="font-heading font-bold text-lg text-slate-900 mt-1 mb-2">1. Limpia y Enjuaga</h3>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+            Elimina los restos de comida, salsas o bebidas de las botellas, latas y frascos con un chorrito de agua reciclada.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center relative overflow-hidden group hover:border-cielo-400 transition">
+          <div class="w-14 h-14 mx-auto rounded-2xl bg-cielo-100 text-cielo-700 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition duration-300">
+            <i class="fa-solid fa-wind"></i>
+          </div>
+          <span class="text-xs font-bold uppercase tracking-wider text-cielo-600">Paso 2</span>
+          <h3 class="font-heading font-bold text-lg text-slate-900 mt-1 mb-2">2. Seca los Envases</h3>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+            La humedad atrae hongos y descompone el papel y cartón limpio, arruinando todo el lote de reciclaje.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center relative overflow-hidden group hover:border-amber-400 transition">
+          <div class="w-14 h-14 mx-auto rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition duration-300">
+            <i class="fa-solid fa-compress"></i>
+          </div>
+          <span class="text-xs font-bold uppercase tracking-wider text-amber-600">Paso 3</span>
+          <h3 class="font-heading font-bold text-lg text-slate-900 mt-1 mb-2">3. Aplasta y Compacta</h3>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+            Aplasta las botellas de plástico y desarma las cajas de cartón. Así ahorras espacio en tu casa y en el camión.
+          </p>
+        </div>
+      </div>
+
+      <!-- Tarjetas de los Contenedores por Colores Oficiales -->
+      <div class="mb-14">
+        <div class="text-center mb-8">
+          <h3 class="font-heading font-bold text-2xl text-slate-900">
+            Los Colores de los Tachos Ecológicos
+          </h3>
+          <p class="text-slate-600 text-sm mt-1">Conoce qué colocar en cada contenedor de tu casa o parque:</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <!-- Tacho 1: Orgánicos (Marrón) -->
+          <div class="tacho-card bg-white p-6 rounded-2xl border-2 border-amber-300/80 shadow-sm hover:shadow-md transition">
+            <div class="flex items-center justify-between mb-4">
+              <span class="w-12 h-12 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center text-2xl shadow-inner">
+                <i class="fa-solid fa-apple-whole"></i>
+              </span>
+              <span class="px-2.5 py-1 rounded-full text-xs font-extrabold bg-amber-50 text-amber-800 border border-amber-200">
+                TACHO MARRÓN
+              </span>
+            </div>
+            <h4 class="font-heading font-bold text-lg text-slate-900 mb-2">Residuos Orgánicos</h4>
+            <ul class="text-xs text-slate-600 space-y-1.5 mb-4">
+              <li><i class="fa-solid fa-check text-amber-600 mr-1.5"></i> Cáscaras de fruta y verduras</li>
+              <li><i class="fa-solid fa-check text-amber-600 mr-1.5"></i> Restos de café y bolsitas de té</li>
+              <li><i class="fa-solid fa-check text-amber-600 mr-1.5"></i> Hojas secas y restos de jardín</li>
+            </ul>
+            <div class="pt-3 border-t border-slate-100 text-[11px] text-amber-900 bg-amber-50/50 p-2 rounded-lg font-medium">
+              💡 <strong>Tip ecológico:</strong> Conviértelo en compost para nutrir las flores de tu jardín.
+            </div>
+          </div>
+
+          <!-- Tacho 2: Plásticos y Latas (Amarillo) -->
+          <div class="tacho-card bg-white p-6 rounded-2xl border-2 border-yellow-400/80 shadow-sm hover:shadow-md transition">
+            <div class="flex items-center justify-between mb-4">
+              <span class="w-12 h-12 rounded-xl bg-yellow-100 text-yellow-800 flex items-center justify-center text-2xl shadow-inner">
+                <i class="fa-solid fa-bottle-water"></i>
+              </span>
+              <span class="px-2.5 py-1 rounded-full text-xs font-extrabold bg-yellow-50 text-yellow-800 border border-yellow-300">
+                TACHO AMARILLO
+              </span>
+            </div>
+            <h4 class="font-heading font-bold text-lg text-slate-900 mb-2">Plásticos y Envases</h4>
+            <ul class="text-xs text-slate-600 space-y-1.5 mb-4">
+              <li><i class="fa-solid fa-check text-yellow-600 mr-1.5"></i> Botellas de refresco y agua (PET)</li>
+              <li><i class="fa-solid fa-check text-yellow-600 mr-1.5"></i> Envases de champú y detergente</li>
+              <li><i class="fa-solid fa-check text-yellow-600 mr-1.5"></i> Latas de atún y conservas limpias</li>
+            </ul>
+            <div class="pt-3 border-t border-slate-100 text-[11px] text-yellow-900 bg-yellow-50/50 p-2 rounded-lg font-medium">
+              💡 <strong>Tip ecológico:</strong> Retira las etiquetas y aplasta las botellas con el pie.
+            </div>
+          </div>
+
+          <!-- Tacho 3: Papel y Cartón (Azul) -->
+          <div class="tacho-card bg-white p-6 rounded-2xl border-2 border-cielo-300/80 shadow-sm hover:shadow-md transition">
+            <div class="flex items-center justify-between mb-4">
+              <span class="w-12 h-12 rounded-xl bg-cielo-100 text-cielo-800 flex items-center justify-center text-2xl shadow-inner">
+                <i class="fa-solid fa-box-open"></i>
+              </span>
+              <span class="px-2.5 py-1 rounded-full text-xs font-extrabold bg-cielo-50 text-cielo-800 border border-cielo-300">
+                TACHO AZUL
+              </span>
+            </div>
+            <h4 class="font-heading font-bold text-lg text-slate-900 mb-2">Papel y Cartón</h4>
+            <ul class="text-xs text-slate-600 space-y-1.5 mb-4">
+              <li><i class="fa-solid fa-check text-cielo-600 mr-1.5"></i> Cajas de cartón desarmadas</li>
+              <li><i class="fa-solid fa-check text-cielo-600 mr-1.5"></i> Periódicos, revistas y folletos</li>
+              <li><i class="fa-solid fa-check text-cielo-600 mr-1.5"></i> Hojas bond y cuadernos usados</li>
+            </ul>
+            <div class="pt-3 border-t border-slate-100 text-[11px] text-cielo-900 bg-cielo-50/50 p-2 rounded-lg font-medium">
+              💡 <strong>Tip ecológico:</strong> Jamás mezclar con papeles higiénicos o cajas con grasa.
+            </div>
+          </div>
+
+          <!-- Tacho 4: Vidrios (Verde) -->
+          <div class="tacho-card bg-white p-6 rounded-2xl border-2 border-eco-400/80 shadow-sm hover:shadow-md transition">
+            <div class="flex items-center justify-between mb-4">
+              <span class="w-12 h-12 rounded-xl bg-eco-100 text-eco-800 flex items-center justify-center text-2xl shadow-inner">
+                <i class="fa-solid fa-wine-bottle"></i>
+              </span>
+              <span class="px-2.5 py-1 rounded-full text-xs font-extrabold bg-eco-50 text-eco-800 border border-eco-300">
+                TACHO VERDE
+              </span>
+            </div>
+            <h4 class="font-heading font-bold text-lg text-slate-900 mb-2">Frascos y Vidrios</h4>
+            <ul class="text-xs text-slate-600 space-y-1.5 mb-4">
+              <li><i class="fa-solid fa-check text-eco-600 mr-1.5"></i> Botellas de gaseosa, vino o jugo</li>
+              <li><i class="fa-solid fa-check text-eco-600 mr-1.5"></i> Frascos de mermelada y salsas</li>
+              <li><i class="fa-solid fa-check text-eco-600 mr-1.5"></i> Envases de perfumes limpios</li>
+            </ul>
+            <div class="pt-3 border-t border-slate-100 text-[11px] text-eco-900 bg-eco-50/50 p-2 rounded-lg font-medium">
+              💡 <strong>Tip ecológico:</strong> El vidrio se puede reciclar infinitas veces sin perder calidad.
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- BUSCADOR INTERACTIVO: "¿En qué tacho va este residuo?" -->
+      <div class="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200 shadow-sm">
+        <div class="max-w-2xl mx-auto text-center mb-8">
+          <div class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-eco-700 bg-eco-50 px-3 py-1 rounded-full mb-2">
+            <i class="fa-solid fa-magnifying-glass"></i> Asistente de Reciclaje en Vivo
+          </div>
+          <h3 class="font-heading font-extrabold text-2xl sm:text-3xl text-slate-900">
+            ¿En qué tacho va este residuo?
+          </h3>
+          <p class="text-slate-600 text-sm mt-1">
+            Escribe cualquier residuo de tu hogar o usa los filtros rápidos para descubrir cómo desecharlo correctamente:
+          </p>
+
+          <!-- Input de búsqueda -->
+          <div class="mt-6 relative">
+            <input 
+              type="text" 
+              id="input-search-waste" 
+              placeholder="Ejemplo: botella de gaseosa, cáscara de plátano, caja de pizza, pilas..." 
+              class="w-full bg-slate-50 border border-slate-300 rounded-2xl pl-12 pr-4 py-4 text-slate-800 placeholder-slate-400 focus:bg-white focus:ring-2 focus:ring-eco-500 focus:border-eco-500 outline-none transition shadow-sm text-sm sm:text-base"
+            >
+            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 text-lg">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+          </div>
+
+          <!-- Filtros de Categoría -->
+          <div class="flex flex-wrap items-center justify-center gap-2 mt-4">
+            <button type="button" class="btn-waste-filter px-3.5 py-1.5 rounded-full text-xs font-semibold bg-emerald-600 text-white shadow-xs transition" data-category="todos">
+              Todos
+            </button>
+            <button type="button" class="btn-waste-filter px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 shadow-xs transition" data-category="plastico">
+              🟡 Plásticos y Latas
+            </button>
+            <button type="button" class="btn-waste-filter px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 shadow-xs transition" data-category="organico">
+              🟤 Orgánicos
+            </button>
+            <button type="button" class="btn-waste-filter px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 shadow-xs transition" data-category="papel">
+              🔵 Papel y Cartón
+            </button>
+            <button type="button" class="btn-waste-filter px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 shadow-xs transition" data-category="vidrio">
+              🟢 Vidrios
+            </button>
+            <button type="button" class="btn-waste-filter px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 shadow-xs transition" data-category="no-aprovechable">
+              ⚫ No aprovechables
+            </button>
+            <button type="button" class="btn-waste-filter px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 shadow-xs transition" data-category="peligroso">
+              🔴 Peligrosos
+            </button>
+          </div>
+          
+          <div class="mt-2 text-right">
+            <span id="waste-count" class="text-xs text-slate-400 font-medium">14 residuos encontrados</span>
+          </div>
+        </div>
+
+        <!-- Resultados Dinámicos del Buscador -->
+        <div id="waste-results-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <!-- Se llena dinámicamente mediante js/app.js -->
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================================================================
+       SECCIÓN 4: REPORTAR CONTAMINACIÓN (FORMULARIO VECINAL INTERACTIVO)
+       ========================================================================= -->
+  <section id="reportar" class="py-20 bg-white border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Encabezado de Sección -->
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 text-red-700 text-xs font-semibold border border-red-200 mb-3">
+          <i class="fa-solid fa-triangle-exclamation"></i> Participación Comunitaria
+        </span>
+        <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">
+          Reportar Basura o Puntos Críticos
+        </h2>
+        <p class="mt-3 text-slate-600 text-base">
+          ¿Viste basura acumulada en una esquina, un contenedor desbordado o desmonte en un parque público? Avísanos completando este formulario para coordinar la limpieza inmediata.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        
+        <!-- Formulario de Reporte -->
+        <div class="lg:col-span-7 bg-slate-50 p-6 sm:p-9 rounded-3xl border border-slate-200 shadow-sm">
+          <form id="form-reportar" class="space-y-5">
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <!-- Nombre del vecino -->
+              <div>
+                <label for="report-nombre" class="block text-xs font-bold text-slate-700 uppercase mb-1.5">
+                  Tu Nombre o Apodo (Opcional)
+                </label>
+                <div class="relative">
+                  <input 
+                    type="text" 
+                    id="report-nombre" 
+                    placeholder="Ej. Vecina María / Anónimo" 
+                    class="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-slate-800 text-sm focus:ring-2 focus:ring-eco-500 focus:border-eco-500 outline-none transition"
+                  >
+                  <div class="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-slate-400 text-sm">
+                    <i class="fa-solid fa-user"></i>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Zona del Incidente -->
+              <div>
+                <label for="report-zona" class="block text-xs font-bold text-slate-700 uppercase mb-1.5">
+                  Zona o Sector *
+                </label>
+                <select id="report-zona" required class="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-slate-800 text-sm focus:ring-2 focus:ring-eco-500 focus:border-eco-500 outline-none transition">
+                  <option value="Zona Norte">Zona Norte (Los Pinos, Sauces)</option>
+                  <option value="Zona Centro">Zona Centro (Plaza, Mercado)</option>
+                  <option value="Zona Sur">Zona Sur (Las Flores, El Sol)</option>
+                  <option value="Zona Este">Zona Este (Parques y Caseríos)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Ubicación exacta o referencia -->
+            <div>
+              <label for="report-ubicacion" class="block text-xs font-bold text-slate-700 uppercase mb-1.5">
+                Dirección exacta o referencia de la calle *
+              </label>
+              <div class="relative">
+                <input 
+                  type="text" 
+                  id="report-ubicacion" 
+                  required 
+                  placeholder="Ej. Jr. Las Begonias con Av. Los Fresnos, frente a la bodega" 
+                  class="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-slate-800 text-sm focus:ring-2 focus:ring-eco-500 focus:border-eco-500 outline-none transition"
+                >
+                <div class="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-slate-400 text-sm">
+                  <i class="fa-solid fa-location-dot"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <!-- Tipo de problema -->
+              <div>
+                <label for="report-tipo" class="block text-xs font-bold text-slate-700 uppercase mb-1.5">
+                  Tipo de Contaminación *
+                </label>
+                <select id="report-tipo" required class="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-slate-800 text-sm focus:ring-2 focus:ring-eco-500 focus:border-eco-500 outline-none transition">
+                  <option value="Acumulación de bolsas en vereda">Acumulación de basura en vereda</option>
+                  <option value="Contenedor de basura desbordado">Contenedor público desbordado</option>
+                  <option value="Desmonte y escombros de construcción">Desmonte / Escombros tirados</option>
+                  <option value="Basura en parque o área verde">Basura en parque infantil</option>
+                  <option value="Quema indebida de basura">Quema ilegal de residuos / humo</option>
+                  <option value="Camión de basura no pasó">El camión recolector no pasó</option>
+                </select>
+              </div>
+
+              <!-- Nivel de urgencia -->
+              <div>
+                <label for="report-urgencia" class="block text-xs font-bold text-slate-700 uppercase mb-1.5">
+                  Nivel de Urgencia *
+                </label>
+                <select id="report-urgencia" required class="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-slate-800 text-sm focus:ring-2 focus:ring-eco-500 focus:border-eco-500 outline-none transition">
+                  <option value="Media">Media (Afecta el paso peatonal)</option>
+                  <option value="Alta">Alta (Malos olores fuertes / insectos)</option>
+                  <option value="Urgente">Urgente (Bloqueo de vía / foco infeccioso)</option>
+                  <option value="Baja">Baja (Poda o ramas secas)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Subir Foto (Simulada con Vista Previa en Vivo) -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">
+                Foto del Lugar (Ayuda a los recolectores a ubicarlo)
+              </label>
+              
+              <div class="border-2 border-dashed border-slate-300 rounded-2xl p-5 bg-white text-center hover:border-eco-500 transition cursor-pointer relative">
+                <input 
+                  type="file" 
+                  id="report-photo" 
+                  accept="image/*" 
+                  class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                >
+                <div class="space-y-1">
+                  <i class="fa-solid fa-camera text-2xl text-slate-400"></i>
+                  <p class="text-xs font-medium text-slate-700">Toca aquí para tomar una foto o subir desde tu celular</p>
+                  <p class="text-[11px] text-slate-400">Formatos JPG o PNG (Máx 5MB)</p>
+                </div>
+              </div>
+
+              <!-- Vista previa de imagen cargada -->
+              <div id="photo-preview-container" class="hidden mt-3 p-3 bg-white rounded-xl border border-slate-200 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <img id="photo-preview-img" src="" alt="Previsualización" class="w-14 h-14 object-cover rounded-lg border">
+                  <div>
+                    <span class="text-xs font-bold text-slate-800 block">Fotografía cargada</span>
+                    <span class="text-[11px] text-emerald-600 font-medium">Lista para ser enviada</span>
+                  </div>
+                </div>
+                <button type="button" id="btn-remove-photo" class="text-slate-400 hover:text-red-500 p-1.5 text-sm" title="Quitar foto">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Comentario o detalle -->
+            <div>
+              <label for="report-comentario" class="block text-xs font-bold text-slate-700 uppercase mb-1.5">
+                Detalles Adicionales
+              </label>
+              <textarea 
+                id="report-comentario" 
+                rows="3" 
+                placeholder="Indica si hay animales rompiendo bolsas, si la basura lleva varios días o cualquier dato útil para el equipo de limpieza..." 
+                class="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-slate-800 text-sm focus:ring-2 focus:ring-eco-500 focus:border-eco-500 outline-none transition"
+              ></textarea>
+            </div>
+
+            <!-- Botón Enviar Reporte -->
+            <button 
+              type="submit" 
+              class="w-full py-4 rounded-xl bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-700 hover:to-amber-700 text-white font-bold text-base shadow-md hover:shadow-lg transition duration-200 flex items-center justify-center gap-2"
+            >
+              <i class="fa-solid fa-paper-plane"></i>
+              Enviar Reporte a la Brigada de Limpieza
+            </button>
+            
+            <p class="text-center text-[11px] text-slate-500">
+              <i class="fa-solid fa-shield-halved text-eco-600"></i> Tu reporte es público para que todos los vecinos puedan darle seguimiento transparente.
+            </p>
+          </form>
+        </div>
+
+        <!-- Panel Lateral Informativo y Beneficios del Reporte -->
+        <div class="lg:col-span-5 space-y-6">
+          <div class="bg-gradient-to-br from-cielo-700 to-blue-900 text-white p-7 rounded-3xl shadow-lg relative overflow-hidden">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 text-white text-xs font-bold mb-3">
+              <i class="fa-solid fa-bell"></i> ¿Qué pasa tras tu reporte?
+            </span>
+            <h3 class="font-heading font-bold text-xl mb-4">
+              Ruta de Atención Comunitaria
+            </h3>
+
+            <div class="space-y-4 text-xs sm:text-sm text-cielo-100">
+              <div class="flex items-start gap-3">
+                <div class="w-7 h-7 rounded-full bg-cielo-400 text-cielo-950 font-bold flex items-center justify-center text-xs shrink-0 mt-0.5">
+                  1
+                </div>
+                <div>
+                  <strong class="text-white block font-semibold">Registro Inmediato:</strong>
+                  Se genera un código único de seguimiento (#REP) y aparece en el muro público.
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <div class="w-7 h-7 rounded-full bg-cielo-400 text-cielo-950 font-bold flex items-center justify-center text-xs shrink-0 mt-0.5">
+                  2
+                </div>
+                <div>
+                  <strong class="text-white block font-semibold">Alerta a la Cuadrilla:</strong>
+                  La cuadrilla municipal del turno correspondiente recibe la geolocalización y foto.
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <div class="w-7 h-7 rounded-full bg-cielo-400 text-cielo-950 font-bold flex items-center justify-center text-xs shrink-0 mt-0.5">
+                  3
+                </div>
+                <div>
+                  <strong class="text-white block font-semibold">Limpieza y Desinfección:</strong>
+                  Se retira la basura acumulada y se esparce cal o desinfectante para neutralizar gérmenes y olores.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tarjeta de contacto de emergencia vecinal -->
+          <div class="p-6 bg-slate-50 rounded-2xl border border-slate-200">
+            <h4 class="font-heading font-bold text-slate-800 text-sm mb-2 flex items-center gap-2">
+              <i class="fa-brands fa-whatsapp text-emerald-600 text-lg"></i>
+              Línea Verde Directa
+            </h4>
+            <p class="text-xs text-slate-600 mb-3">
+              Si se trata de una emergencia ambiental urgente (quema masiva de basura o vertido de químicos):
+            </p>
+            <div class="bg-white p-3 rounded-xl border border-slate-200 flex items-center justify-between">
+              <span class="font-mono font-bold text-sm text-slate-800">+51 987 654 321</span>
+              <span class="text-[11px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-semibold">WhatsApp 24/7</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- TABLERO COMUNITARIO: Muro de Reportes Recientes -->
+      <div class="mt-16 pt-10 border-t border-slate-200">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+          <div>
+            <h3 class="font-heading font-extrabold text-2xl text-slate-900">
+              Muro de Reportes Ciudadanos en Vivo
+            </h3>
+            <p class="text-slate-600 text-xs sm:text-sm mt-0.5">
+              Aquí aparecen los puntos críticos reportados por los vecinos y el estado de su atención:
+            </p>
+          </div>
+          <button type="button" id="btn-reset-demo-reports" class="inline-flex items-center gap-1.5 text-xs text-slate-500 hover:text-slate-800 underline self-start sm:self-auto">
+            <i class="fa-solid fa-rotate-left"></i> Restablecer ejemplos iniciales
+          </button>
+        </div>
+
+        <!-- Grid de reportes comunitarios -->
+        <div id="community-reports-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Renderizado dinámicamente mediante js/app.js -->
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================================================================
+       SECCIÓN 5: CONSEJOS AMBIENTALES & CALCULADORA DE HÁBITOS VERDES
+       ========================================================================= -->
+  <section id="consejos" class="py-20 bg-gradient-to-b from-eco-50/50 to-white border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Encabezado de Sección -->
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-eco-100 text-eco-800 text-xs font-semibold border border-eco-200 mb-3">
+          <i class="fa-solid fa-earth-americas"></i> Hábitos que Transforman
+        </span>
+        <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">
+          Consejos Ambientales para el Día a Día
+        </h2>
+        <p class="mt-3 text-slate-600 text-base">
+          Pequeñas acciones cotidianas ahorran miles de litros de agua, reducen toneladas de residuos plásticos y mantienen las calles de nuestra comunidad limpias y ordenadas.
+        </p>
+      </div>
+
+      <!-- Cuadrícula de 4 grandes áreas de consejos -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        
+        <!-- Consejo 1: Ahorro de Agua -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4">
+          <div class="w-14 h-14 rounded-2xl bg-cielo-100 text-cielo-700 flex items-center justify-center text-2xl">
+            <i class="fa-solid fa-droplet"></i>
+          </div>
+          <h3 class="font-heading font-bold text-lg text-slate-900">
+            Ahorro Inteligente de Agua
+          </h3>
+          <ul class="text-xs sm:text-sm text-slate-600 space-y-2.5">
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-cielo-600 mt-1"></i>
+              <span><strong>Lava la vereda con balde:</strong> Nunca uses la manguera a presión; ahorras más de 120 litros por lavado.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-cielo-600 mt-1"></i>
+              <span><strong>Cierra el grifo:</strong> Al cepillarte los dientes o enjabonarte las manos, mantén la llave cerrada.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-cielo-600 mt-1"></i>
+              <span><strong>Reutiliza agua:</strong> El agua de enjuagar frutas y verduras sirve para regar las macetas al anochecer.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Consejo 2: Calles Limpias -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4">
+          <div class="w-14 h-14 rounded-2xl bg-eco-100 text-eco-700 flex items-center justify-center text-2xl">
+            <i class="fa-solid fa-broom"></i>
+          </div>
+          <h3 class="font-heading font-bold text-lg text-slate-900">
+            Calles y Veredas Limpias
+          </h3>
+          <ul class="text-xs sm:text-sm text-slate-600 space-y-2.5">
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-eco-600 mt-1"></i>
+              <span><strong>Bolsillo ecológico:</strong> Si compras un helado o caramelo en la calle, guarda la envoltura en tu bolsillo hasta ver un tacho.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-eco-600 mt-1"></i>
+              <span><strong>No barrer hacia la pista:</strong> Junta el polvo en una paleta y no lo tires a la pista ni a los buzones pluviales.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-eco-600 mt-1"></i>
+              <span><strong>Mascotas responsables:</strong> Lleva siempre bolsitas biodegradables para recoger las heces de tu perrito.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Consejo 3: Reducción de Plásticos -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4">
+          <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-2xl">
+            <i class="fa-solid fa-bag-shopping"></i>
+          </div>
+          <h3 class="font-heading font-bold text-lg text-slate-900">
+            Menos Plásticos de un Solo Uso
+          </h3>
+          <ul class="text-xs sm:text-sm text-slate-600 space-y-2.5">
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-amber-600 mt-1"></i>
+              <span><strong>Bolsas de tela para las compras:</strong> Lleva tu propia bolsa o canasta al mercado y panadería.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-amber-600 mt-1"></i>
+              <span><strong>Dile NO al tecnopor:</strong> Prefiere envases retornables o de cartón para llevar tus comidas.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-amber-600 mt-1"></i>
+              <span><strong>Usa tomatodo o cantimplora:</strong> Deja de comprar botellitas descartables todos los días.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Consejo 4: Áreas Verdes & Compostaje -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition space-y-4">
+          <div class="w-14 h-14 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-2xl">
+            <i class="fa-solid fa-seedling"></i>
+          </div>
+          <h3 class="font-heading font-bold text-lg text-slate-900">
+            Huertos y Áreas Verdes
+          </h3>
+          <ul class="text-xs sm:text-sm text-slate-600 space-y-2.5">
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-emerald-600 mt-1"></i>
+              <span><strong>Compostaje en casa:</strong> Con una caja de madera y tierra, transforma cáscaras en rica vitamina para tus plantas.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-emerald-600 mt-1"></i>
+              <span><strong>Adopta un árbol en tu cuadra:</strong> Riega el arbolito de tu vereda una vez por semana con agua reciclada.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-emerald-600 mt-1"></i>
+              <span><strong>Crea maceteros reciclados:</strong> Dale una segunda vida a botellas cortadas para sembrar orégano, menta o flores.</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- HERRAMIENTA INTERACTIVA: "Calcula tu Huella Verde del Día" -->
+      <div class="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200 shadow-md">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <div class="lg:col-span-7 space-y-4">
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">
+              <i class="fa-solid fa-medal"></i> Desafío Ecológico Diario
+            </div>
+            <h3 class="font-heading font-extrabold text-2xl sm:text-3xl text-slate-900">
+              ¿Qué tan verde fue tu día hoy?
+            </h3>
+            <p class="text-slate-600 text-sm">
+              Marca las acciones positivas que realizaste hoy para evaluar tu compromiso comunitario:
+            </p>
+
+            <div class="space-y-3 pt-2">
+              <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-emerald-50/50 cursor-pointer transition">
+                <input type="checkbox" class="eco-habit-checkbox w-5 h-5 rounded text-eco-600 focus:ring-eco-500">
+                <span class="text-xs sm:text-sm text-slate-700 font-medium">Usé una bolsa de tela o mochila para mis compras hoy.</span>
+              </label>
+
+              <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-emerald-50/50 cursor-pointer transition">
+                <input type="checkbox" class="eco-habit-checkbox w-5 h-5 rounded text-eco-600 focus:ring-eco-500">
+                <span class="text-xs sm:text-sm text-slate-700 font-medium">Separé las botellas de plástico y las aplasté antes de botarlas.</span>
+              </label>
+
+              <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-emerald-50/50 cursor-pointer transition">
+                <input type="checkbox" class="eco-habit-checkbox w-5 h-5 rounded text-eco-600 focus:ring-eco-500">
+                <span class="text-xs sm:text-sm text-slate-700 font-medium">Cerré el grifo mientras me cepillaba o lavaba los platos.</span>
+              </label>
+
+              <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-emerald-50/50 cursor-pointer transition">
+                <input type="checkbox" class="eco-habit-checkbox w-5 h-5 rounded text-eco-600 focus:ring-eco-500">
+                <span class="text-xs sm:text-sm text-slate-700 font-medium">Si salí a la calle, guardé mis basuritas hasta llegar a un tacho.</span>
+              </label>
+
+              <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-emerald-50/50 cursor-pointer transition">
+                <input type="checkbox" class="eco-habit-checkbox w-5 h-5 rounded text-eco-600 focus:ring-eco-500">
+                <span class="text-xs sm:text-sm text-slate-700 font-medium">Saqué mi basura en el horario exacto y con bolsa bien anudada.</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Resultado / Progreso de la Calculadora -->
+          <div class="lg:col-span-5 bg-slate-50 p-6 sm:p-8 rounded-2xl border border-slate-200 text-center space-y-4">
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Tu Nivel de Impacto Positivo</span>
+            
+            <div class="font-heading font-extrabold text-5xl text-eco-600" id="eco-score-text">
+              0%
+            </div>
+
+            <!-- Barra de Progreso -->
+            <div class="w-full bg-slate-200 h-3.5 rounded-full overflow-hidden">
+              <div id="eco-progress-bar" class="bg-gradient-to-r from-eco-500 to-cielo-500 h-full w-0 transition-all duration-500"></div>
+            </div>
+
+            <p id="eco-badge-title" class="text-slate-500 text-sm">
+              Haz clic en las acciones para calcular tu huella positiva hoy.
+            </p>
+
+            <div class="pt-4 border-t border-slate-200 text-xs text-slate-500 flex items-center justify-center gap-2">
+              <i class="fa-solid fa-tree text-eco-600"></i> ¡Gracias por hacer de nuestra comunidad un lugar mejor!
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================================================================
+       SECCIÓN 6: CONTACTO Y SUGERENCIAS VECINALES
+       ========================================================================= -->
+  <section id="contacto" class="py-20 bg-white border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Encabezado de Sección -->
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cielo-50 text-cielo-700 text-xs font-semibold border border-cielo-200 mb-3">
+          <i class="fa-solid fa-comments"></i> Diálogo Comunitario
+        </span>
+        <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">
+          Contacto y Buzón de Sugerencias
+        </h2>
+        <p class="mt-3 text-slate-600 text-base">
+          ¿Tienes una idea para mejorar la limpieza de tu calle, quieres solicitar contenedores adicionales o unirte a la brigada ambiental juvenil? Escríbenos directamente.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        
+        <!-- Canales de contacto directo -->
+        <div class="lg:col-span-5 space-y-6">
+          <div class="bg-slate-50 p-6 sm:p-8 rounded-3xl border border-slate-200 space-y-6">
+            <h3 class="font-heading font-bold text-xl text-slate-900">
+              Canales de Atención Comunal
+            </h3>
+
+            <!-- Item WhatsApp -->
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-xl shrink-0">
+                <i class="fa-brands fa-whatsapp"></i>
+              </div>
+              <div>
+                <span class="block text-xs font-bold text-slate-500 uppercase">WhatsApp Vecinal</span>
+                <span class="font-bold text-slate-800 text-base">+51 987 654 321</span>
+                <p class="text-xs text-slate-500">Atención de Lunes a Sábado: 8am - 6pm</p>
+              </div>
+            </div>
+
+            <!-- Item Correo Electrónico -->
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-cielo-100 text-cielo-700 flex items-center justify-center text-xl shrink-0">
+                <i class="fa-regular fa-envelope"></i>
+              </div>
+              <div>
+                <span class="block text-xs font-bold text-slate-500 uppercase">Correo Electrónico</span>
+                <span class="font-bold text-slate-800 text-base">contacto@comunidadlimpia.pe</span>
+                <p class="text-xs text-slate-500">Respuesta promedio en menos de 24 horas</p>
+              </div>
+            </div>
+
+            <!-- Item Ubicación / Local Comunal -->
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-xl shrink-0">
+                <i class="fa-solid fa-building-user"></i>
+              </div>
+              <div>
+                <span class="block text-xs font-bold text-slate-500 uppercase">Local de Junta Vecinal</span>
+                <span class="font-bold text-slate-800 text-base">Av. Primavera #420 (Frente al Parque)</span>
+                <p class="text-xs text-slate-500">Reuniones de coordinación: Primer sábado del mes</p>
+              </div>
+            </div>
+
+            <!-- Tarjeta Informativa ChicasTec -->
+            <div class="p-4 rounded-2xl bg-gradient-to-r from-eco-50 to-cielo-50 border border-eco-200">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-eco-600 text-white flex items-center justify-center text-sm">
+                  <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-slate-800 text-xs">Iniciativa Educativa ChicasTec</h4>
+                  <p class="text-[11px] text-slate-600">Creado con cariño por Gracia Milagros para el Taller Integrado.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Formulario de Contacto -->
+        <div class="lg:col-span-7 bg-white p-6 sm:p-9 rounded-3xl border border-slate-200 shadow-sm">
+          <form id="form-contacto" class="space-y-4">
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="contact-nombre" class="block text-xs font-bold text-slate-700 uppercase mb-1.5">
+                  Nombre Completo *
+                </label>
+                <input 
+                  type="text" 
+                  id="contact-nombre" 
+                  required 
+                  placeholder="Ej. Juan Pérez" 
+                  class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-slate-800 text-sm focus:ring-2 focus:ring-eco-500 focus:border-eco-500 outline-none transition"
+                >
+              </div>
+
+              <div>
+                <label for="contact-telefono" class="block text-xs font-bold text-slate-700 uppercase mb-1.5">
+                  Teléfono / Celular *
+                </label>
+                <input 
+                  type="tel" 
+                  id="contact-telefono" 
+                  required 
+                  placeholder="Ej. 987654321" 
+                  class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-slate-800 text-sm focus:ring-2 focus:ring-eco-500 focus:border-eco-500 outline-none transition"
+                >
+              </div>
+            </div>
+
+            <div>
+              <label for="contact-asunto" class="block text-xs font-bold text-slate-700 uppercase mb-1.5">
+                Motivo de tu mensaje *
+              </label>
+              <select id="contact-asunto" required class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-slate-800 text-sm focus:ring-2 focus:ring-eco-500 focus:border-eco-500 outline-none transition">
+                <option value="Sugerencia de limpieza">Sugerencia para mejorar la limpieza del barrio</option>
+                <option value="Solicitar contenedores">Solicitud de contenedores de reciclaje para mi cuadra</option>
+                <option value="Voluntariado">Quiero unirme como voluntario(a) ambiental</option>
+                <option value="Queja formal">Reclamo por incumplimiento de recolección</option>
+                <option value="Charla escolar">Coordinar taller de reciclaje en colegio</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="contact-mensaje" class="block text-xs font-bold text-slate-700 uppercase mb-1.5">
+                Mensaje o Propuesta *
+              </label>
+              <textarea 
+                id="contact-mensaje" 
+                rows="4" 
+                required 
+                placeholder="Escribe tu mensaje con total libertad. ¡Toda opinión vecinal cuenta para construir una comunidad más limpia!" 
+                class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-slate-800 text-sm focus:ring-2 focus:ring-eco-500 focus:border-eco-500 outline-none transition"
+              ></textarea>
+            </div>
+
+            <button 
+              type="submit" 
+              class="w-full py-4 rounded-xl bg-eco-600 hover:bg-eco-700 text-white font-bold text-base shadow-md hover:shadow-lg transition duration-200 flex items-center justify-center gap-2"
+            >
+              <i class="fa-solid fa-paper-plane"></i>
+              Enviar Mensaje al Equipo Vecinal
+            </button>
+
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================================================================
+       FOOTER (PIE DE PÁGINA)
+       ========================================================================= -->
+  <footer class="bg-slate-900 text-slate-400 py-16 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-slate-800">
+        
+        <!-- Info de Marca -->
+        <div class="lg:col-span-5 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-eco-600 text-white flex items-center justify-center text-xl">
+              <i class="fa-solid fa-leaf"></i>
+            </div>
+            <span class="font-heading font-extrabold text-2xl text-white">
+              Comunidad<span class="text-eco-400">Limpia</span>
+            </span>
+          </div>
+          <p class="text-sm text-slate-400 leading-relaxed max-w-sm">
+            Plataforma vecinal digital para promover la cultura ecológica, erradicar los basurales clandestinos y hacer de nuestras calles un hogar seguro y digno para todos.
+          </p>
+          <div class="flex items-center gap-3 pt-2">
+            <a href="#" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-eco-600 hover:text-white flex items-center justify-center text-sm transition" aria-label="Facebook">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="#" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-cielo-500 hover:text-white flex items-center justify-center text-sm transition" aria-label="Twitter">
+              <i class="fa-brands fa-twitter"></i>
+            </a>
+            <a href="#" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-emerald-600 hover:text-white flex items-center justify-center text-sm transition" aria-label="WhatsApp">
+              <i class="fa-brands fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Enlaces Rápidos -->
+        <div class="lg:col-span-3 space-y-3">
+          <h4 class="font-heading font-bold text-white text-base">Secciones</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#inicio" class="hover:text-eco-400 transition">Inicio</a></li>
+            <li><a href="#horarios" class="hover:text-eco-400 transition">Horarios de Recolección</a></li>
+            <li><a href="#reciclaje" class="hover:text-eco-400 transition">Aprende a Reciclar</a></li>
+            <li><a href="#reportar" class="hover:text-eco-400 transition">Reportar Basura</a></li>
+            <li><a href="#consejos" class="hover:text-eco-400 transition">Consejos Ecológicos</a></li>
+            <li><a href="#contacto" class="hover:text-eco-400 transition">Contacto Comunitario</a></li>
+          </ul>
+        </div>
+
+        <!-- Mensaje de Conciencia -->
+        <div class="lg:col-span-4 space-y-3">
+          <h4 class="font-heading font-bold text-white text-base">Nuestro Compromiso</h4>
+          <div class="p-4 rounded-2xl bg-slate-800/80 border border-slate-700 text-xs leading-relaxed space-y-2">
+            <p>
+              "Una calle limpia no es la que más se barre, sino la que menos se ensucia."
+            </p>
+            <p class="text-eco-400 font-semibold">
+              ¡Súmate hoy mismo a cuidar el medio ambiente!
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Créditos y Derechos -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+        <p>© 2024 - 2026 Comunidad Limpia. Proyecto de Impacto Social Comunitario.</p>
+        <p class="flex items-center gap-1.5">
+          <span>Diseñado y desarrollado con dedicación por <strong>Gracia Milagros</strong></span>
+          <span class="text-red-500">❤</span>
+          <span>para <strong>+ChicasTec</strong></span>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- =========================================================================
+       MODAL DE CONFIRMACIÓN DE REPORTE EXITOSO
+       ========================================================================= -->
+  <div id="modal-report-success" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl border border-slate-100 text-center animate-bounce-short">
+      <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 mx-auto flex items-center justify-center text-3xl mb-4">
+        <i class="fa-solid fa-check"></i>
+      </div>
+      <h3 class="font-heading font-bold text-2xl text-slate-900 mb-2">
+        ¡Reporte Registrado con Éxito!
+      </h3>
+      <p class="text-slate-600 text-sm mb-4 leading-relaxed">
+        Gracias por ser parte activa de la solución. Tu alerta comunitaria ha sido guardada y comunicada al equipo de limpieza.
+      </p>
+
+      <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-left text-xs space-y-2 mb-6">
+        <div class="flex justify-between">
+          <span class="text-slate-500">Código de Seguimiento:</span>
+          <strong id="modal-report-id" class="text-slate-800 font-mono text-sm font-bold">#REP-0000</strong>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-slate-500">Lugar:</span>
+          <span id="modal-report-loc" class="text-slate-800 font-semibold truncate max-w-[180px]">Calle...</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-slate-500">Estado:</span>
+          <span class="text-amber-700 font-bold bg-amber-100 px-2 py-0.5 rounded">En proceso</span>
+        </div>
+      </div>
+
+      <button id="modal-close-btn" class="w-full py-3.5 rounded-xl bg-eco-600 hover:bg-eco-700 text-white font-bold text-sm shadow transition">
+        Entendido, volver a la página
+      </button>
+    </div>
+  </div>
+
+
+  <!-- =========================================================================
+       BOTÓN FLOTANTE "VOLVER ARRIBA"
+       ========================================================================= -->
+  <button id="btn-scroll-top" class="hidden-btn fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-eco-600 text-white shadow-xl hover:bg-eco-700 flex items-center justify-center text-lg transition duration-300 focus:outline-none" aria-label="Volver arriba">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- Script interactivo -->
+  <script src="js/app.js"></script>
+</body>
+</html>
+
